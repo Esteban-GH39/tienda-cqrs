@@ -1,0 +1,55 @@
+# COMANDOS -> PostgreSQL (Supabase)   |   CONSULTAS -> MongoDB
+# Todas las conexiones se leen de variables de entorno (ver .env.example y docs/wiki/Supabase.md)
+server:
+  port: 8080
+
+spring:
+  application:
+    name: tienda-cqrs
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: none          # el esquema lo crea Flyway (db/migration)
+    open-in-view: false
+  flyway:
+    enabled: true
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/tienda}   # lado de CONSULTAS
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    listener:
+      ack-mode: record
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USER:guest}
+    password: ${RABBIT_PASSWORD:guest}
+
+app:
+  kafka:
+    topic: pedidos.eventos
+  outbox:
+    intervalo-ms: 1000
+  cors:
+    origenes: ${CORS_ORIGENES:http://localhost:4200,http://localhost:4201}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,13 @@
+# Java / Maven
+backend/target/
+*.class
+# Angular / Node
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+# Secretos y entorno
+.env
+# IDE
+.idea/
+.vscode/
+*.iml

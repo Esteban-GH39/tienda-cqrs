@@ -1,0 +1,35 @@
+:root {
+  --fondo: #f4f6fb; --tarjeta: #ffffff; --texto: #1d2433; --suave: #6b7280; --borde: #e3e7ef;
+  --primario: #4f46e5; --primario-osc: #4338ca; --ok: #16a34a; --aviso: #d97706; --mal: #dc2626; --info: #0284c7;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fondo); color: var(--texto); }
+h1, h2, h3 { margin: 0 0 .5rem; }
+button { font: inherit; cursor: pointer; border: 0; border-radius: 8px; padding: .5rem .9rem; background: var(--primario); color: #fff; }
+button:hover:not(:disabled) { background: var(--primario-osc); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.suave { background: #eef0fb; color: var(--primario); }
+button.peligro { background: #fde8e8; color: var(--mal); }
+input, select { font: inherit; padding: .5rem .7rem; border: 1px solid var(--borde); border-radius: 8px; background: #fff; }
+.barra { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: #1d2433; color: #fff; }
+.barra h1 { font-size: 1.25rem; margin: 0; }
+.punto { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: .4rem; background: var(--mal); }
+.punto.on { background: var(--ok); }
+.contenedor { max-width: 1100px; margin: 1.2rem auto; padding: 0 1rem; display: grid; gap: 1.2rem; }
+.tarjeta { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 1.1rem 1.3rem; }
+.fila { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+.grid2 { display: grid; gap: 1.2rem; grid-template-columns: 2fr 1fr; }
+@media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+th, td { text-align: left; padding: .55rem .4rem; border-bottom: 1px solid var(--borde); vertical-align: middle; }
+th { color: var(--suave); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; }
+.etiqueta { padding: .15rem .55rem; border-radius: 999px; font-size: .78rem; font-weight: 600; }
+.CREADO { background: #e0f2fe; color: var(--info); } .PAGADO { background: #fef3c7; color: var(--aviso); }
+.ENVIADO { background: #dcfce7; color: var(--ok); } .CANCELADO { background: #fee2e2; color: var(--mal); }
+.vacio { color: var(--suave); padding: .8rem 0; }
+.aviso { padding: .6rem .9rem; border-radius: 8px; background: #eef0fb; color: var(--primario-osc); }
+.error { background: #fee2e2; color: var(--mal); }
+.feed { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.feed li { padding: .5rem .7rem; border-left: 4px solid var(--primario); background: #f8f9fd; border-radius: 6px; font-size: .88rem; }
+.feed small { color: var(--suave); display: block; }
+.mono { font-family: Consolas, monospace; font-size: .8rem; color: var(--suave); }
