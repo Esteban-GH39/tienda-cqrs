@@ -1,4 +1,4 @@
-# 🛒 Tienda en vivo – CQRS + Kafka + RabbitMQ + WebSocket
+# Tienda en vivo – CQRS + Kafka + RabbitMQ + WebSocket
 
 Proyecto de **Sistemas Distribuidos** (Universidad Central). Una tienda de pedidos con:
 
