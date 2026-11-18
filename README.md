@@ -9,7 +9,7 @@ Proyecto de **Sistemas Distribuidos** (Universidad Central). Una tienda de pedid
 - **Broadcast en vivo** por WebSocket a todos los clientes conectados
 - **Dos motores de base de datos**: **PostgreSQL en la nube (Supabase)** para comandos y **MongoDB** para consultas
 
-📄 **[Requerimientos](docs/REQUERIMIENTOS.md)** (incluye en qué se coloca cada tema y por qué) · 📚 **Wiki** (páginas en [`docs/wiki`](docs/wiki)) · 🚀 [Cómo publicarlo en GitHub](docs/PUBLICAR_EN_GITHUB.md)
+ **[Requerimientos](docs/REQUERIMIENTOS.md)** (incluye en qué se coloca cada tema y por qué) ·  **Wiki** (páginas en [`docs/wiki`](docs/wiki)) ·  [Cómo publicarlo en GitHub](docs/PUBLICAR_EN_GITHUB.md)
 
 ## Arquitectura
 
