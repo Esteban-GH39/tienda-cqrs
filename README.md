@@ -51,10 +51,6 @@ flowchart LR
     Q -.lee de.-> MG
 ```
 
-## Inicio rápido
-
-Necesitas **Docker Desktop** y una base en **Supabase** (para los comandos; MongoDB lo trae Docker) (guía: [`docs/wiki/Base-de-datos-Supabase.md`](docs/wiki/Base-de-datos-Supabase.md)). No hay que instalar Kafka ni RabbitMQ: los trae Docker.
-
 ### Opción A: todo con Docker (un solo comando)
 
 ```bash
@@ -81,15 +77,6 @@ cd frontend
 npm install
 npx ng serve tienda      # http://localhost:4200
 npx ng serve admin       # http://localhost:4201
-```
-
-Guía paso a paso (incluye Windows y RabbitMQ nativo): [`docs/wiki/Instalacion-y-ejecucion.md`](docs/wiki/Instalacion-y-ejecucion.md).
-
-## Qué probar
-
-1. Abre la **Tienda** en dos pestañas y el **Panel** en otra.
-2. Escribe un nombre, agrega productos y pulsa **Hacer pedido**: aparece en todas las pantallas al instante.
-3. En el Panel pulsa **Marcar pagado** y luego **Enviar**. Mira los logs del servidor: `[KAFKA]`, `[PROYECTOR]`, `[RABBIT]`, `[FACTURACIÓN]`, `[LOGÍSTICA]`, `[WEBSOCKET]`.
 
 ## Estructura
 
