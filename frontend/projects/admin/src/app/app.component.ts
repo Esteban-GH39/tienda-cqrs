@@ -56,7 +56,6 @@ type Vista = 'pedidos' | 'log';
             <section>
               <div class="encabezado">
                 <h2>{{ filtro() ? 'Pedidos ' + texto(filtro()).toLowerCase() + 's' : 'Todos los pedidos' }}</h2>
-                <p class="suave">Lo que ves viene del lado de consultas (MongoDB).</p>
               </div>
               @if (error()) { <p class="aviso error">{{ error() }}</p> }
               @if (pedidos().length === 0) {

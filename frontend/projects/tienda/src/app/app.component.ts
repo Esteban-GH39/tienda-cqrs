@@ -47,7 +47,6 @@ type Vista = 'comprar' | 'pedidos' | 'log';
             <section>
               <div class="encabezado">
                 <h2>Catálogo</h2>
-                <p class="suave">Agrega lo que quieras y confirma tu pedido en el recibo.</p>
               </div>
               @for (p of catalogo; track p.nombre) {
                 <div class="producto">

@@ -35,10 +35,6 @@ const NODOS: Nodo[] = [
     <section class="log">
       <div class="log-intro">
         <h2>Log del stack en vivo</h2>
-        <p class="suave">
-          Cada línea es un momento en que el sistema usa una herramienta. Haz un pedido en la Tienda
-          y sigue su recorrido de izquierda a derecha. Las líneas más nuevas aparecen arriba.
-        </p>
       </div>
 
       <div class="pila" role="list" aria-label="Herramientas del stack">
