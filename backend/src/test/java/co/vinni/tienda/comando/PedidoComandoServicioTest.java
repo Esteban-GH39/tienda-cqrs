@@ -1,6 +1,7 @@
 package co.vinni.tienda.comando;
 
 import co.vinni.tienda.evento.PedidoEvento;
+import co.vinni.tienda.traza.TrazaServicio;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({PedidoComandoServicio.class, JacksonAutoConfiguration.class})
+@Import({PedidoComandoServicio.class, TrazaServicio.class, JacksonAutoConfiguration.class})
 class PedidoComandoServicioTest {
 
     @Autowired PedidoComandoServicio servicio;

@@ -2,6 +2,7 @@ package co.vinni.tienda.consulta;
 
 import co.vinni.tienda.evento.PedidoEvento;
 import co.vinni.tienda.mensajeria.PublicadorRabbit;
+import co.vinni.tienda.traza.TrazaServicio;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -21,11 +22,14 @@ public class ProyectorKafka {
     private final ProyeccionServicio proyeccion;
     private final PublicadorRabbit rabbit;
     private final ObjectMapper mapper;
+    private final TrazaServicio traza;
 
-    public ProyectorKafka(ProyeccionServicio proyeccion, PublicadorRabbit rabbit, ObjectMapper mapper) {
+    public ProyectorKafka(ProyeccionServicio proyeccion, PublicadorRabbit rabbit, ObjectMapper mapper,
+                          TrazaServicio traza) {
         this.proyeccion = proyeccion;
         this.rabbit = rabbit;
         this.mapper = mapper;
+        this.traza = traza;
     }
 
     @KafkaListener(topics = "${app.kafka.topic}", groupId = "proyector-pedidos")
@@ -38,6 +42,8 @@ public class ProyectorKafka {
             return;
         }
         log.info("[KAFKA] recibido {} del pedido {}", evento.tipo(), evento.pedidoId());
+        traza.registrar(TrazaServicio.KAFKA, "Evento recibido por el proyector",
+                evento.tipo() + " ← tópico pedidos.eventos (grupo proyector-pedidos)", evento.pedidoId());
         if (proyeccion.aplicar(evento)) {
             rabbit.publicar(evento);
         }

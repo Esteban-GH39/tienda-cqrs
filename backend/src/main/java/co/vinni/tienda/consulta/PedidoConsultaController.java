@@ -1,5 +1,6 @@
 package co.vinni.tienda.consulta;
 
+import co.vinni.tienda.traza.TrazaServicio;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,15 +13,20 @@ import java.util.Map;
 public class PedidoConsultaController {
 
     private final PedidoVistaRepositorio vistas;
+    private final TrazaServicio traza;
 
-    public PedidoConsultaController(PedidoVistaRepositorio vistas) {
+    public PedidoConsultaController(PedidoVistaRepositorio vistas, TrazaServicio traza) {
         this.vistas = vistas;
+        this.traza = traza;
     }
 
     @GetMapping("/pedidos")
     public List<PedidoVista> listar(@RequestParam(required = false) String estado,
                                     @RequestParam(required = false) String cliente) {
-        return vistas.listar(estado, cliente);
+        List<PedidoVista> lista = vistas.listar(estado, cliente);
+        traza.registrarLimitado("consulta-pedidos", 1500, TrazaServicio.MONGODB, "Consulta leída de MongoDB",
+                "GET /api/consultas/pedidos → pedido_vista (" + lista.size() + " documento(s))", null);
+        return lista;
     }
 
     @GetMapping("/pedidos/{id}")
@@ -30,6 +36,9 @@ public class PedidoConsultaController {
 
     @GetMapping("/resumen")
     public Map<String, Long> resumen() {
-        return vistas.resumen();
+        Map<String, Long> conteo = vistas.resumen();
+        traza.registrarLimitado("consulta-resumen", 1500, TrazaServicio.MONGODB, "Resumen calculado en MongoDB",
+                "GET /api/consultas/resumen → pedido_vista agrupado por estado", null);
+        return conteo;
     }
 }

@@ -2,6 +2,7 @@ package co.vinni.tienda.consulta;
 
 import co.vinni.tienda.evento.ItemEvento;
 import co.vinni.tienda.evento.PedidoEvento;
+import co.vinni.tienda.traza.TrazaServicio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ class ProyeccionServicioTest {
     @BeforeEach
     void preparar() {
         vistas = new AlmacenEnMemoria();
-        proyeccion = new ProyeccionServicio(vistas);
+        proyeccion = new ProyeccionServicio(vistas, TrazaServicio.vacio());
     }
 
     private PedidoEvento evento(String eventId, String tipo, String pedidoId, String estado) {

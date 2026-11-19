@@ -1,5 +1,6 @@
 package co.vinni.tienda.comando;
 
+import co.vinni.tienda.traza.TrazaServicio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -16,7 +17,7 @@ import static org.mockito.Mockito.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(OutboxPublicador.class)
+@Import({OutboxPublicador.class, TrazaServicio.class})
 class OutboxPublicadorTest {
 
     @Autowired OutboxPublicador publicador;

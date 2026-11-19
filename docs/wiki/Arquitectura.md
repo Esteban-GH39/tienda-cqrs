@@ -39,4 +39,6 @@
 
 La vista se actualiza después de que el evento pasa por Kafka. El comando ya quedó guardado, pero la lectura puede tardar un instante (*consistencia eventual*). Por eso el servidor responde `202 Accepted` y los clientes esperan el broadcast para refrescar.
 
+Para ver este recorrido en vivo, abre la pestaña **Log del stack** (ver [Log del stack en vivo](Log-del-stack)).
+
 Detalle de cada tema y por qué se usa: `docs/REQUERIMIENTOS.md` §4 del repositorio.

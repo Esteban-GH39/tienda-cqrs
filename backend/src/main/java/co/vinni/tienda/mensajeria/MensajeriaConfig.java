@@ -81,7 +81,12 @@ public class MensajeriaConfig {
     /** Cola temporal propia de ESTA instancia: así cada servidor recibe una copia del broadcast. */
     @Bean
     public Queue broadcastQueue() {
-        return new AnonymousQueue();
+        // Nombre único por instancia, no exclusiva: funciona igual en RabbitMQ 3.x y 4.x.
+        // autoDelete: se borra al desconectarse el servidor; x-expires: limpieza si quedó huérfana (1 h).
+        return QueueBuilder.durable("q.broadcast." + java.util.UUID.randomUUID())
+                .autoDelete()
+                .withArgument("x-expires", 3_600_000)
+                .build();
     }
 
     @Bean

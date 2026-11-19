@@ -15,6 +15,7 @@ Proyecto de la asignatura **Sistemas Distribuidos** (Universidad Central). Una t
 | R7 | Explicar en qué se coloca cada tema y por qué | Sección 4 de este documento y cada página de la wiki. | `docs/REQUERIMIENTOS.md` §4 |
 | R8 | Base de datos PostgreSQL en la nube | **Supabase** (PostgreSQL administrado, plan gratuito) para el lado de comandos. | `docs/wiki/Base-de-datos-Supabase.md`, `application.yml` |
 | R9 | Dos motores de base de datos distintos | **PostgreSQL** (comandos) y **MongoDB** (consultas). | `comando/` (JPA) y `consulta/PedidoVistaMongo.java` (MongoDB) |
+| R10 | Ver en tiempo real cuándo se usa cada herramienta del stack | Pestaña **Log del stack** en la Tienda y en el Panel: cada pieza del servidor registra su uso y el servidor lo emite por WebSocket (`/topic/traza`). | `traza/` (servidor) y `shared/log-stack.component.ts` (clientes) |
 
 ## 2. Requisitos funcionales
 

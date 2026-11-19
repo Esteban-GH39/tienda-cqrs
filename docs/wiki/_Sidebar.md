@@ -6,6 +6,7 @@
 - [Kafka](Kafka)
 - [RabbitMQ](RabbitMQ)
 - [Broadcast y WebSocket](Broadcast-y-WebSocket)
+- [Log del stack en vivo](Log-del-stack)
 - [Base de datos Supabase](Base-de-datos-Supabase)
 - [Instalación y ejecución](Instalacion-y-ejecucion)
 - [API](API)

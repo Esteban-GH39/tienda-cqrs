@@ -1,6 +1,7 @@
 package co.vinni.tienda.consulta;
 
 import co.vinni.tienda.evento.PedidoEvento;
+import co.vinni.tienda.traza.TrazaServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,19 @@ public class ProyeccionServicio {
     private static final Logger log = LoggerFactory.getLogger(ProyeccionServicio.class);
 
     private final PedidoVistaRepositorio vistas;
+    private final TrazaServicio traza;
 
-    public ProyeccionServicio(PedidoVistaRepositorio vistas) {
+    public ProyeccionServicio(PedidoVistaRepositorio vistas, TrazaServicio traza) {
         this.vistas = vistas;
+        this.traza = traza;
     }
 
     /** @return true si el evento era nuevo y se aplicó; false si ya estaba aplicado. */
     public boolean aplicar(PedidoEvento e) {
         if (vistas.eventoYaAplicado(e.eventId())) {
             log.info("[PROYECTOR] evento {} ya aplicado, se ignora", e.eventId());
+            traza.registrar(TrazaServicio.MONGODB, "Evento repetido, se ignora",
+                    e.tipo() + " ya estaba en evento_aplicado (idempotencia)", e.pedidoId());
             return false;
         }
 
@@ -38,6 +43,9 @@ public class ProyeccionServicio {
 
         vistas.marcarEventoAplicado(e.eventId());
         log.info("[PROYECTOR] aplicado {} -> pedido {} ahora {} (MongoDB)", e.tipo(), e.pedidoId(), e.estado());
+        traza.registrar(TrazaServicio.MONGODB, "Vista actualizada",
+                (PedidoEvento.CREADO.equals(e.tipo()) ? "insert en pedido_vista" : "update de pedido_vista")
+                        + " (estado " + e.estado() + ") + registro en evento_aplicado", e.pedidoId());
         return true;
     }
 }
